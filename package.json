@@ -1,7 +1,7 @@
 {
-  "name": "nodejs-express-mysql",
+  "name": "productivity-tracekr-backend",
   "version": "1.0.0",
-  "description": "Node.js Restful CRUD API with Node.js, Express and MySQL",
+  "description": "Node.js Restful CRUD API with Node.js, Express and MySQL for Productivity Tracker App",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,14 +9,19 @@
   "keywords": [
     "nodejs",
     "express",
+    "authentication",
     "mysql",
     "restapi"
   ],
-  "author": "bezkoder",
-  "license": "ISC",
+  "author": "Subhajit Paul, Trishita Majumder",
+  "license": "",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
-    "mysql": "^2.17.1"
+    "jsonwebtoken": "^8.5.1",
+    "mysql2": "^2.1.0",
+    "sequelize": "^5.21.3"
   }
 }
