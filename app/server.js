@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to Productivity tracker application." });
 });
 
-const db = require("./app/models");
+const db = require("./models");
 const Role = db.role;
 
 db.sequelize.sync({ force: true }).then(() => {
@@ -41,8 +41,8 @@ function initial() {
   });
 }
 // routes
-require("./app/routes/auth.routes")(app);
-require("./app/routes/user.routes")(app);
+require("./routes/auth.routes")(app);
+require("./routes/user.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
