@@ -14,7 +14,7 @@ module.exports = function (app) {
 
   app.get(
     "/api/test/basic",
-    [authJwt.verifyToken, authJwt.isBasic],
+    [authJwt.verifyToken],
     controller.basicBoard
   );
 
