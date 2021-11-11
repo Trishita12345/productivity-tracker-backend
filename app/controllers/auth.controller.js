@@ -16,10 +16,10 @@ exports.signup = (req, res) => {
     password: bcrypt.hashSync(req.body.password, 8),
   })
     .then((user) => {
-        // user role = 1 when signUp
-        user.setRole(1).then(() => {
-          res.send({ message: "User was registered successfully!" });
-        });
+      // user role = 1 when signUp
+      user.setRole(1).then(() => {
+        res.send({ message: "User was registered successfully!" });
+      });
     })
     .catch((err) => {
       res.status(500).send({ message: err.message });
@@ -60,6 +60,19 @@ exports.signin = (req, res) => {
           accessToken: token,
         });
       });
+    })
+    .catch((err) => {
+      res.status(500).send({ message: err.message });
+    });
+};
+
+exports.updateRole = (req, res) => {
+  User.update(
+    { roleId: req.roleId === 1 ? 2 : 1 },
+    { where: { id: req.userId } }
+  )
+    .then(() => {
+      return res.status(200).send({ message: "Role Updated Succesfully" });
     })
     .catch((err) => {
       res.status(500).send({ message: err.message });
