@@ -16,10 +16,32 @@ exports.addNewProject = (req, res) => {
     });
 };
 exports.getProjectsByUserId = (req, res) => {
-  res.send({ message: "getProjectsByUserId" });
+  return Projects.findAll({
+    where: {
+      userId: req.userId,
+    },
+  })
+    .then((projects) => {
+      if (!projects) {
+        return res
+          .status(404)
+          .send({ message: "Currently you don't have any project!" });
+      }
+      res.status(200).send(projects);
+    })
+    .catch((err) => {
+      res.status(500).send({ message: err.message });
+    });
 };
 exports.updateProject = (req, res) => {
   res.send({ message: "Project updated successfully!" });
+  Projects.update({ name: req.body.name }, { where: { id: req.userId } })
+    .then(() => {
+      return res.status(200).send({ message: "Role Updated Succesfully" });
+    })
+    .catch((err) => {
+      res.status(500).send({ message: err.message });
+    });
 };
 exports.deleteProject = (req, res) => {
   res.send({ message: "Project deleted successfully!" });
