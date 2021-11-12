@@ -1,5 +1,6 @@
 const { authJwt } = require("../middleware");
 const controller = require("../controllers/user.controller");
+const { API, USER } = require("../common/constants");
 
 module.exports = function (app) {
   app.use(function (req, res, next) {
@@ -10,16 +11,14 @@ module.exports = function (app) {
     next();
   });
 
-  app.get("/api/test/all", controller.allAccess);
+  app.get(`${API}${USER}/all`, controller.allAccess);
 
-  app.get(
-    "/api/test/basic",
-    [authJwt.verifyToken],
-    controller.basicBoard
-  );
+  //isbasic
+  app.get(`${API}${USER}/basic"`, [authJwt.verifyToken], controller.basicBoard);
 
+  //isPremium
   app.get(
-    "/api/test/premium",
+    `${API}${USER}/premium`,
     [authJwt.verifyToken, authJwt.isPremium],
     controller.premiumBoard
   );
