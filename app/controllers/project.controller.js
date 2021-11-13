@@ -1,13 +1,13 @@
 const db = require("../models");
-const Projects = db.projects;
+const Project = db.project;
 
 exports.addNewProject = (req, res) => {
   // Save project to Database
-  Projects.create({
+  Project.create({
     name: req.body.name,
   })
-    .then((projects) => {
-      projects.setUser(req.userId).then(() => {
+    .then((project) => {
+      project.setUser(req.userId).then(() => {
         res.send({ message: "Project added successfully!" });
       });
     })
@@ -16,33 +16,43 @@ exports.addNewProject = (req, res) => {
     });
 };
 exports.getProjectsByUserId = (req, res) => {
-  return Projects.findAll({
+  return Project.findAll({
     where: {
       userId: req.userId,
     },
   })
-    .then((projects) => {
-      if (!projects) {
+    .then((project) => {
+      if (!project) {
         return res
           .status(404)
           .send({ message: "Currently you don't have any project!" });
       }
-      res.status(200).send(projects);
+      res.status(200).send(project);
     })
     .catch((err) => {
       res.status(500).send({ message: err.message });
     });
 };
 exports.updateProject = (req, res) => {
-  res.send({ message: "Project updated successfully!" });
-  Projects.update({ name: req.body.name }, { where: { id: req.userId } })
-    .then(() => {
-      return res.status(200).send({ message: "Role Updated Succesfully" });
+  Project.update(
+    {
+      name: req.body.name,
+    },
+    { where: { id: req.body.id } }
+  )
+    .then((project) => {
+      res.status(200).send({ message: "Project Updated Succesfully" });
     })
     .catch((err) => {
       res.status(500).send({ message: err.message });
     });
 };
 exports.deleteProject = (req, res) => {
-  res.send({ message: "Project deleted successfully!" });
+  Project.destroy({ where: { id: req.body.id }, force: true })
+    .then(() => {
+      res.status(200).send({ message: "Project Deleted Succesfully" });
+    })
+    .catch((err) => {
+      res.status(500).send({ message: err.message });
+    });
 };

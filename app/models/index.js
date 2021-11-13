@@ -21,15 +21,24 @@ db.sequelize = sequelize;
 
 db.user = require("../models/user.model.js")(sequelize, DataTypes);
 db.role = require("../models/role.model.js")(sequelize, DataTypes);
-db.projects = require("../models/projects.model.js")(sequelize, DataTypes);
+db.project = require("./project.model.js")(sequelize, DataTypes);
+db.task = require("./task.model.js")(sequelize, DataTypes);
 
 // 1:1 :: user:role
 db.user.belongsTo(db.role);
 db.role.hasOne(db.user);
 
-// 1:n :: user:projects
-db.user.hasMany(db.projects);
-db.projects.belongsTo(db.user);
+// 1:n :: user:project
+db.user.hasMany(db.project, { onDelete: "CASCADE" });
+db.project.belongsTo(db.user);
+
+// 1:n :: project:task
+db.project.hasMany(db.task, { onDelete: "CASCADE" });
+db.task.belongsTo(db.project);
+
+// && n:1 :: task:user
+db.task.belongsTo(db.user);
+db.user.hasMany(db.task);
 
 db.ROLES = ["basic", "premium"];
 module.exports = db;

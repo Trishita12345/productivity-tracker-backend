@@ -1,9 +1,8 @@
 module.exports = (sequelize, DataTypes) => {
-  const Projects = sequelize.define("projects", {
+  return sequelize.define("projects", {
     name: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
   });
-
-  return Projects;
 };

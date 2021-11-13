@@ -1,6 +1,7 @@
 module.exports = {
   API: "/api",
-  PROJECTS: "/projects",
+  PROJECT: "/project",
   USER: "/user",
   AUTH: "/auth",
+  TASK: "/task",
 };

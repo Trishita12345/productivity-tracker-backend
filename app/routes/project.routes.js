@@ -1,6 +1,6 @@
 const { authJwt } = require("../middleware");
-const controller = require("../controllers/projects.controller");
-const { API, PROJECTS } = require("../common/constants");
+const controller = require("../controllers/project.controller");
+const { API, PROJECT } = require("../common/constants");
 
 module.exports = function (app) {
   app.use(function (req, res, next) {
@@ -13,28 +13,28 @@ module.exports = function (app) {
 
   //add new project
   app.post(
-    `${API}${PROJECTS}/add`,
+    `${API}${PROJECT}/add`,
     [authJwt.verifyToken],
     controller.addNewProject
   );
 
   //get project by userId
   app.get(
-    `${API}${PROJECTS}/getByUserId`,
+    `${API}${PROJECT}/getByUserId`,
     [authJwt.verifyToken],
     controller.getProjectsByUserId
   );
 
   //update project
   app.put(
-    `${API}${PROJECTS}/update`,
+    `${API}${PROJECT}/update`,
     [authJwt.verifyToken],
     controller.updateProject
   );
 
   //delete project
   app.delete(
-    `${API}${PROJECTS}/delete`,
+    `${API}${PROJECT}/delete`,
     [authJwt.verifyToken],
     controller.deleteProject
   );

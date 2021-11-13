@@ -2,7 +2,7 @@ const db = require("../models");
 const ROLES = db.ROLES;
 const User = db.user;
 
-checkDuplicateUsernameOrEmail = (req, res, next) => {
+const checkDuplicateUsernameOrEmail = (req, res, next) => {
   // Username
   User.findOne({
     where: {
@@ -20,8 +20,8 @@ checkDuplicateUsernameOrEmail = (req, res, next) => {
       where: {
         email: req.body.email,
       },
-    }).then((user) => {
-      if (user) {
+    }).then((user1) => {
+      if (user1) {
         res.status(400).send({
           message: "Failed! Email is already in use!",
         });

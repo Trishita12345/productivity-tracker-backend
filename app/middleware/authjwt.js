@@ -3,7 +3,7 @@ const config = require("../config/auth.config.js");
 const db = require("../models");
 const User = db.user;
 
-verifyToken = (req, res, next) => {
+const verifyToken = (req, res, next) => {
   let token = req.headers["x-access-token"];
 
   if (!token) {
@@ -24,7 +24,7 @@ verifyToken = (req, res, next) => {
   });
 };
 
-isPremium = (req, res, next) => {
+const isPremium = (req, res, next) => {
   if (req.role === 2) {
     next();
     return;
