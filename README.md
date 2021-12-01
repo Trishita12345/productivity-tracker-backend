@@ -7,6 +7,10 @@
 3. JWT & Authentication
 4. MySQL & Sequelize
 
+# ER Diagram of the DB Table Structure:
+![ER Diagram](https://user-images.githubusercontent.com/32391004/144270067-375f21b0-847c-46d3-83ef-a1396b0204ad.png)
+
+
 ## Project setup
 
 ```
