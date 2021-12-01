@@ -8,7 +8,7 @@
 4. MySQL & Sequelize
 
 # ER Diagram of the DB Table Structure:
-![ER Diagram](https://user-images.githubusercontent.com/32391004/144270067-375f21b0-847c-46d3-83ef-a1396b0204ad.png)
+![ER Diagram](https://user-images.githubusercontent.com/32391004/144322131-fe5f4765-7c2d-4d47-94b2-d2896fc4a1f3.png)
 
 
 ## Project setup
